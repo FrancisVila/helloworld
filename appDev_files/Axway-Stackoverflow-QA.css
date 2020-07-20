@@ -1,0 +1,89 @@
+.Axway-Stackoverflow-A,
+.Axway-Stackoverflow-Q {
+    margin-bottom: 30px;
+}
+
+.Axway-Stackoverflow-A h4 a,
+.Axway-Stackoverflow-Q h4 a {
+    text-decoration: none;
+}
+
+.Axway-Stackoverflow-A:last-of-type,
+.Axway-Stackoverflow-Q:last-of-type {
+    margin-bottom: 0;
+}
+
+.Axway-Stackoverflow-A span,
+.Axway-Stackoverflow-Q span {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 10px;
+}
+
+.Axway-Stackoverflow-A span {
+    padding-top: 75%;
+}
+
+.Axway-Stackoverflow-Q span {
+    padding-top: 100%;
+}
+
+@media (min-width: 1440px) {
+    .Axway-Stackoverflow-A span,
+    .Axway-Stackoverflow-Q span {
+        width: 50%;
+        margin-left: 25%;
+    }
+
+    .Axway-Stackoverflow-A span {
+        padding-top: 37.5%;
+    }
+    
+    .Axway-Stackoverflow-Q span {
+        padding-top: 50%;
+    }
+}
+
+.Axway-Stackoverflow-A span b,
+.Axway-Stackoverflow-Q span b {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-style: normal;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.Axway-Stackoverflow-A small,
+.Axway-Stackoverflow-Q small {
+    font-style: normal;
+    display: block;
+    font-weight: 400;
+    text-align: center;
+    word-break: break-all;
+}
+
+.Axway-Stackoverflow-A span b {
+    background-color: #b81f6d;
+    color: white;
+}
+
+.Axway-Stackoverflow-Q span b {
+    border-radius: 50%;
+    border: 1px solid #b81f6d;
+}
+
+.Axway-Stackoverflow-A header small,
+.Axway-Stackoverflow-Q header small {
+    display: block;
+    margin-bottom: 10px;
+    font-style: italic;
+    text-align: left;
+}

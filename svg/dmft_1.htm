@@ -1,0 +1,270 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml">
+	 <head>
+	 <meta http - equiv="Content-Type" content="text/html; charset=iso-8859-1" / >
+	 <style>
+	 </style>
+	 <script src="plugins/TweenLite.min.js">  </script>
+	 <script src="plugins/TweenMax.min.js">  </script>
+	 <script src="plugins/CSSPlugin.min.js">  </script>
+	 <script src="plugins/TimelineMax.min.js">  </script>
+	 <script src="plugins/TweenMax.min.js">  </script>
+	 <script src="plugins/CustomEase.min.js">  </script>
+	 <script src="plugins/DrawSVGPlugin.min.js">  </script>
+	 <script src="plugins/GSDevTools.min.js">  </script>
+	 <script src="plugins/CSSPlugin.min.js">  </script>
+	 <script src="plugins/Draggable.min.js">  </script>
+	 <script src="plugins/MorphSVGPlugin.min.js">  </script>
+	 <script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous">  </script>
+	 <script src="plugins/jquery.csv.min.js">  </script>
+
+	 <title> AMPLIFY Managed File Transfer </title>
+	 </head>
+	 <body text="#333333" link="#71b200" leftmargin="20" topmargin="20" marginwidth="20" marginheight="20" bgcolor="#eeeeee">
+	 <div id="clap" style="position:absolute; width:200px; height:200px;">  <h1 id="countdown">  </h1>  </div>
+
+	 <div style="text-align:center; width:100%">
+	 <h1>  </h1>
+
+	 <div id="container" style="width:100%; height:100%">  </div>
+	 <!--TODO search for "first", "second" "third" and replace by real values-->
+	<audio id="dmft_ph1" src="dmft/dmft_ph1.mp3">  </audio>
+	 <audio id="dmft_ph2" src="dmft/dmft_ph2.mp3">  </audio>
+
+
+	 <script>
+	$(function () {
+
+		// load svg with ajax
+
+		var colors=["#FF0000", "#FFFF00", "#00FF00", "#00FFFF", "#0000FF", "#FF00FF", "#ED1C24", "#FFF200", "#00A651", "#00AEEF", "#2E3192", "#EC008C", "#FF0000"];
+
+		var container=$("#container");
+
+		// TODO: adjust file URLs
+		const svgFile="dmft/dmft_1.svg";
+		const markers="dmft/dmft.csv"
+
+			// load SVG file (exported from Illustrator) and audio markers CSV file (exported from Audiotion)
+			var fileSVG=$.get(svgFile),
+		fileAudioMarkers=$.get(markers),
+		all=$.when(fileSVG, fileAudioMarkers)
+			.then(injectSvg)
+			.always(doAnimation)
+			.fail(handleFail);
+
+		function handleFail(message) {
+			console.log("LOAD FAILED!!!!! ");
+			console.log(message);
+		}
+
+		// inject SVG file into <div id="#container"
+		function injectSvg(xmlDoc) {
+			var svg=$(xmlDoc).find("svg");
+			container.append(svg);
+			svg.attr("id", "svg");
+			svg.attr("width", "1920");
+			svg.attr("height", "1080");
+		}
+
+		// create CSS classes for easy manipulation of complex graphics that can't be grouped graphically
+		function initClasses() {
+			// TODO add css classes to make animation targets a) for multiple items in svg b) for items where the id doesn't make it to the SVG output
+			$("* ").addClass("background");
+			$("#a").addClass("background");
+			$("#svg-text *").addClass("svg");
+			$("#svg-text").addClass("svg");
+		}
+
+		function retrieveCSVfromAudition(csvText) {
+			console.log(csvText.indexOf("\t"));
+			csvText2=csvText.replace(/\t/gi, ",");
+			console.log(csvText2);
+			var arr=$.csv.toArrays(csvText2);
+			return arr;
+		}
+
+		//converts 0:02.670 to 2.270
+		// will not work if over 1 hour long
+		function convertDuration(str) {
+			var arr=str.split(":");
+			console.log
+			if (arr.length == 2) {
+				val=Number((Number(arr[0]) * 60) + Number(arr[1]));
+				console.log("converted=" + val);
+				return val;
+			} else
+				return 3.333;
+		}
+
+		function playAudio(id) {
+			document.getElementById(id).play();
+		}
+
+		// adjust viewport to size of object provided by selector (selector as in CSS)
+		function goToPosition(timeline, selector, duration) {
+		svgRoot = document.getElementById("svg");
+		console.log("svgRoot=" + svgRoot);
+		console.log("selector=" + selector);
+		dur= duration || 0;
+		var el = document.getElementById(selector);
+		console.log("el=" + el)		
+		var x = Number(el.getBBox().x);
+		var y = Number(el.getBBox().y);
+		var w = Number(el.getBBox().width);
+		var h = Number(el.getBBox().height);
+		console.log(x +"; " + y +"; " + w +"; " + h) ; 
+		var xywh = el.getBBox().x + " " + el.getBBox().y + " " + el.getBBox().width + " " + el.getBBox().height ;
+		timeline.to(svgRoot, dur, {attr:{ viewBox:xywh}});
+		
+		}
+		
+		function get_ph1() {
+			var tl=new TimelineLite({
+					id: arAudioMarkers[1][0]
+				});
+			tl.call(playAudio, ["dmft_ph1"]);
+
+			// go to position of rectangle inside group named #p1 in the svg
+			goToPosition(tl, "r1");
+			/*
+			tl.add("start1", "+=0"); startTime="start1"; duration=0;
+			tl.to("#p1_1", duration, {	opacity: 1 }, startTime);
+			tl.to("#p1_2", duration, {	opacity: 1 }, startTime);
+			tl.to("#p1_3", duration, {	opacity: 1 }, startTime);
+			
+			tl.add("start1a", "+=0"); startTime="start1a"; duration=0.5;
+			tl.to("#p1_1", duration, {	opacity: 0 }, startTime);
+			tl.add("start1b"); startTime="start1b"; duration=1;
+			tl.to("#p1_2", duration, {	opacity: 0 }, startTime);
+			tl.add("start1c"); startTime="start1c"; duration=1;
+			tl.to("#p1_3", duration, {	opacity: 0  }, startTime);
+*/
+
+			tl.add("start1", "+=0"); startTime="start1"; duration=0;
+			tl.to("#p1_1", duration, {	opacity: 1 }, startTime);
+			tl.to("#p1_2", duration, {	opacity: 1 }, startTime);
+			tl.to("#p1_3", duration, {	opacity: 1 }, startTime);
+			
+
+			tl.to("#p1_1", {	opacity: 0 });
+			tl.to("#p1_2", {	opacity: 0 });
+			tl.to("#p1_3", {	opacity: 0 });
+			return tl;
+		}
+
+		function get_ph2() {
+			var tl=new TimelineLite({
+					id: arAudioMarkers[2][0]
+				});
+				tl.call(playAudio, ["dmft_ph2"]);
+			goToPosition(tl, "r2");	
+console.log("#p2_1=" + $("#p2_1"));		
+			tl.add("start2", "+=0"); startTime="start2"; duration=0;
+
+			tl.to("#p2_1", duration, {	opacity: 1}, startTime);
+			tl.to("#p2_2", duration, {	opacity: 1 }, startTime);
+			tl.to("#p2_3", duration, {	opacity: 1 }, startTime);	
+/*
+			tl.add("start2a"); startTime="start2a"; duration=0.5;		
+			tl.to("#p2_1", duration, {opacity: 0}, startTime);
+			tl.add("start2b"); startTime="start2b"; duration=1;	
+			tl.to("#p2_2", duration, {opacity: 0}, startTime);
+			tl.add("start2c"); startTime="start2c"; duration=1;	
+			tl.to("#p2_3", duration, {opacity: 0}, startTime);
+			*/
+		
+			tl.to("#p2_1", {opacity: 0});
+			tl.to("#p2_2", {opacity: 0});	
+			tl.to("#p2_3", {opacity: 0});
+			return tl;
+		}
+
+		function get_ph3() {
+		/*
+			var tl=new TimelineLite({
+					id: arAudioMarkers[3][0]
+				});
+			tl.call(playAudio, ["dmft_ph3"]);
+			tl.to("#svg-text", 2, {
+				rotation: 90
+			});
+			return tl;
+			*/
+		}
+
+		function clap() {
+			var tl=new TimelineLite({
+					id: "clap"
+				});
+			tl.to("#clap", 2, {
+				backgroundColor: "red"
+			});
+			tl.set("#countdown", {
+				text: "1"
+			});
+			tl.to("#clap", 2, {
+				backgroundColor: "green"
+			});
+			tl.to("#clap", 2, {
+				backgroundColor: "blue"
+			});
+			tl.to("#clap", 2, {
+				backgroundColor: "blue"
+			});
+			tl.to("#clap", 2, {
+				backgroundColor: "transparent"
+			});
+			tl.duration(1);
+			return tl;
+		}
+
+		function doAnimation() {
+			initClasses();
+			allText=fileAudioMarkers.responseText;
+			arAudioMarkers=retrieveCSVfromAudition(allText);
+			console.log(arAudioMarkers);
+
+			var arTimeLines=[];
+			var ph1=get_ph1();
+			var ph2=get_ph2();
+		//	var ph3=get_ph3();
+
+			arTimeLines.push({
+				name: arAudioMarkers[1][0],
+				timeLine: ph1,
+				duration: convertDuration(arAudioMarkers[1][2])
+			});
+			arTimeLines.push({
+				name: arAudioMarkers[2][0],
+				timeLine: ph2,
+				duration: convertDuration(arAudioMarkers[2][2])
+			});
+
+
+			console.log(convertDuration(arAudioMarkers[1][2]));
+			ph1.duration(convertDuration(arAudioMarkers[1][2]));
+			console.log("arAudioMarkers=" + arAudioMarkers[1][2]);
+			console.log("convertDuration=" + convertDuration(arAudioMarkers[1][2]))
+			ph2.duration(convertDuration(arAudioMarkers[2][2]));
+		//	ph3.duration(arTimeLines[2].duration);
+
+			var master=new TimelineLite();
+			master.add(clap());
+			master.add(ph1);
+			master.add(ph2);
+			// master.add(ph3);
+			master.add(clap());
+
+		} // end doanimation
+
+		GSDevTools.create();
+
+	}); // end jQuery
+ </script>
+
+ </body>
+</html>

@@ -1,0 +1,29 @@
+.Axway-Articles {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Axway-Articles article {
+    opacity: 1;
+    transition: opacity 0.6s;
+}
+
+.Axway-Articles article p {
+    margin-bottom: 10px;
+}
+
+.Axway-Articles article:last-of-type {
+    margin-bottom: 0;
+}
+
+.Axway-Articles article:hover {
+    opacity: 0.8;
+}
+
+.Axway-Articles article header a {
+    text-decoration: none;
+}
+
+.Axway-Articles article .Axway-ImgProxy {
+    display: block;
+}

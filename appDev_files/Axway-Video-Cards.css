@@ -1,0 +1,71 @@
+.Axway-Video-Cards {
+    display: block;
+}
+
+.Axway-Video-Cards article {
+    opacity: 1;
+    transition: opacity 0.6s;
+}
+
+.Axway-Video-Cards article:hover {
+    opacity: 0.8;
+}
+
+.Axway-Video-Card {
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.Axway-Video-Card Axway-VideoProxy,
+.Axway-Video-Card .sppb-addon-video {
+    position: relative;
+    z-index: 1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    overflow: hidden;
+}
+
+
+/**
+ * Here 15px is to compensate the gutter between articles.
+ */
+
+.Axway-Video-Card header {
+    padding: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.Axway-Video-Card video {
+    width: 100%;
+    cursor: pointer;
+    display: block;
+}
+
+.Axway-Video-Card::after {
+    content: '';
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    left: 7px;
+    right: 7px;
+    top: 0;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 0;
+    border-radius: 5px;
+}
+
+@media (min-width: 768px) {
+    .Axway-Video-Cards {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: -15px;
+    }
+
+    .Axway-Video-Card {
+        margin-bottom: 15px;
+        flex-basis: 100%;
+    }
+}

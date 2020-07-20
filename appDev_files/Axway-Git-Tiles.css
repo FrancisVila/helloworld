@@ -1,0 +1,203 @@
+.Axway-Git-Tiles {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: stretch;
+	margin-bottom: -15px;
+}
+
+.Axway-Git-Tile {
+	position: relative;
+	margin-bottom: 15px;
+}
+
+.Axway-Git-Tile header {
+	position: relative;
+}
+
+.Axway-Git-Tile:hover > a {
+	background-color: #43a7be;
+}
+
+.Axway-Git-Tile h4,
+.Axway-Git-Tile p {
+	color: #101820;
+	text-align: left;
+	transition: color 0.6s;
+}
+
+.Axway-Git-Tile p {
+	font-weight: normal;
+	width: 100%;
+}
+
+.Axway-Git-Tile > a {
+	position: relative;
+	height: 100%;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	padding: 15px;
+	padding-top: 60px;
+	text-decoration: none;
+	text-align: center;
+	color: #101820;
+	background-color: transparent;
+	transition: background-color 0.6s;
+	border-radius: 5px;
+}
+
+.Axway-Git-Tile a:hover {
+    text-decoration: none;
+}
+
+.Axway-Git-Tile > a::after {
+	content: '';
+	display: block;
+	box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+}
+
+.Axway-Git-Tile:hover a::after,
+.Axway-Git-Tile:hover h4,
+.Axway-Git-Tile:hover p {
+	color: white !important;
+}
+
+.Axway-Git-Tile ul {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: flex-end;
+	position: absolute;
+	left: 7px;
+	top: 0;
+	right: 7px;
+	z-index: 2;
+}
+
+.Axway-Git-Tile li {
+	flex-basis: 30px;
+	display: block;
+	position: relative;
+	z-index: 2;
+}
+
+.Axway-Git-Tile li a,
+.Axway-Git-Tile li span {
+	width: 100%;
+	display: block;
+	padding: 0 6px;
+	color: white;
+	white-space: nowrap;
+	box-sizing: border-box;
+	text-transform: uppercase;
+	text-decoration: none;
+	height: 30px;
+	line-height: 30px;
+	font-size: 80%;
+}
+
+.Axway-Git-Tile li span {
+	color: black;
+}
+
+.Axway-Git-Tile [data-platform] a::after {
+	content: '';
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 1;
+	color: white;
+	text-align: center;
+	font-family: 'Axway-GG-Icons';
+	pointer-events: none;
+	font-size: 125%;
+}
+
+.Axway-Git-Tile [data-platform='java'] a {
+	background-color: #8d6708;
+}
+
+.Axway-Git-Tile [data-platform='shell'] a {
+	background-color: #54a75f;
+}
+
+.Axway-Git-Tile [data-platform='javascript'] a {
+	background-color: #f9bf3b;
+}
+
+.Axway-Git-Tile [data-platform='groovy'] a {
+	background-color: #a7778f;
+}
+
+.Axway-Git-Tile [data-platform='python'] a {
+	background-color: #2a7ab0;
+}
+
+.Axway-Git-Tile [data-platform='apache'] span {
+	background-color: transparent;
+}
+
+.Axway-Git-Tile [data-platform='ios'] a {
+	background-color: transparent;
+	color: transparent;
+	width: 30px;
+	overflow: hidden;
+}
+
+.Axway-Git-Tile [data-platform='ios'] a::after {
+	color: #43a7be;
+	content: '\eabe';
+}
+
+.Axway-Git-Tile [data-platform='android'] a {
+	background-color: transparent;
+	color: transparent;
+	width: 30px;
+	overflow: hidden;
+}
+
+.Axway-Git-Tile [data-platform='android'] a::after {
+	content: '\eac0';
+	color: #54a75f;
+}
+
+.Axway-Git-Tile [data-platform='mobileweb'] a {
+	background-color: transparent;
+	color: transparent;
+	width: 30px;
+	overflow: hidden;
+}
+
+.Axway-Git-Tile [data-platform='mobileweb'] a::after {
+	content: '\eae4';
+	color: #d22630;
+}
+
+.Axway-Git-Tile [data-platform='blackberry'] a {
+	background-color: #101820;
+}
+
+.Axway-Git-Tile [data-platform='tizen'] a {
+	background-color: #75787b;
+}
+
+.Axway-Git-Tile [data-platform='commonjs'] a {
+	background-color: #f9bf3b;
+}

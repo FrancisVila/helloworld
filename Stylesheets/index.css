@@ -1,0 +1,38 @@
+body {
+    font-family:sans-serif;
+    margin-left:10px;
+    margin-top:10px;
+}
+h3
+{
+	margin-top: 3px;
+	margin-bottom: 3px;
+	font-size: 24px;
+	font-weight: regular !important;
+}
+.margin-bottom-20
+{
+	margin-bottom: 20px !important;
+}
+
+.margin-bottom-60
+{
+	margin-bottom: 60px !important;
+}
+.portalColor  {color: #428bca;}
+
+.upsideDown {
+	-webkit-transform:rotate(-180deg);
+-moz-transform:rotate(-180deg);
+-o-transform:rotate(-180deg);
+transform:rotate(-180deg);
+ms-filter:"progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+	
+}
+
+.underRed {
+	text-decoration: underline;
+	text-decoration-color: red;
+	font-weight: bold;
+  }

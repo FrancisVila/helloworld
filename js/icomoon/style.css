@@ -1,0 +1,108 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?g7hc68');
+  src:  url('fonts/icomoon.eot?g7hc68#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?g7hc68') format('truetype'),
+    url('fonts/icomoon.woff?g7hc68') format('woff'),
+    url('fonts/icomoon.svg?g7hc68#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-book3:before {
+  content: "\e905";
+}
+.icon-Automator_link_circle_2:before {
+  content: "\e906";
+  color: #047a1a;
+}
+.icon-Automator_link_circle_3:before {
+  content: "\e907";
+  color: #047a1a;
+}
+.icon-Automator_link_error:before {
+  content: "\e908";
+  color: #c00;
+}
+.icon-Automator_link_exclusive:before {
+  content: "\e909";
+  color: #3a68bc;
+}
+.icon-Automator_link_arrow_tripple:before {
+  content: "\e90a";
+  color: #047a1a;
+}
+.icon-Automator_link_watchdog:before {
+  content: "\e90b";
+}
+.icon-Automator_link_arrow:before {
+  content: "\e90c";
+  color: #047a1a;
+}
+.icon-Automator_link_arrow_double:before {
+  content: "\e90d";
+  color: #047a1a;
+}
+.icon-Automator_link_circle_1:before {
+  content: "\e90e";
+  color: #047a1a;
+}
+.icon-Automator_status_svg_wait3:before {
+  content: "\e902";
+  color: #808184;
+}
+.icon-Automator_status_svg_run2_4:before {
+  content: "\e903";
+  color: #808184;
+}
+.icon-Automator_status_svg_notif_out_3:before {
+  content: "\e904";
+  color: #808184;
+}
+.icon-Automator_status_svg_notif_in_3:before {
+  content: "\e900";
+  color: #808184;
+}
+.icon-list-numbered:before {
+  content: "\e9b9";
+}
+.icon-list2:before {
+  content: "\e9bb";
+}
+.icon-download2:before {
+  content: "\e9c5";
+}
+.icon-warning:before {
+  content: "\ea07";
+}
+.icon-cancel-circle:before {
+  content: "\ea0d";
+}
+.icon-bold:before {
+  content: "\ea62";
+}
+.icon-underline:before {
+  content: "\ea63";
+}
+.icon-italic:before {
+  content: "\ea64";
+}
+.icon-embed2:before {
+  content: "\ea80";
+}

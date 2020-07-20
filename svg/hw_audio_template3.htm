@@ -1,0 +1,218 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<style>
+</style>
+	
+<script src="plugins/TweenLite.min.js"></script>
+<script src="plugins/TweenMax.min.js"></script>
+<script src="plugins/CSSPlugin.min.js"></script>
+<script src="plugins/TimelineMax.min.js"></script>
+<script src="plugins/TweenMax.min.js"></script>
+<script src="plugins/CustomEase.min.js"></script>
+<script src="plugins/DrawSVGPlugin.min.js"></script>
+<script src="plugins/GSDevTools.min.js"></script>
+<script src="plugins/CSSPlugin.min.js"></script>
+<script src="plugins/Draggable.min.js"></script>
+<script src="plugins/MorphSVGPlugin.min.js"></script>
+<script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+<script src="plugins/jquery.csv.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+<title>Hello World template (or sample?)</title>
+</head>
+<body  text="#333333" link="#71b200" leftmargin="20" topmargin="20" marginwidth="20" marginheight="20" bgcolor="#eeeeee">
+
+<div style="text-align:center; width:100%">
+<h1></h1>
+
+  <div id="container" style="width:100%; height:100%"></div>
+
+<script>
+$(function(){
+
+// load svg with ajax 
+  // copy/paste from http://plnkr.co/edit/LneUEK?p=preview 
+  
+  var colors =["#FF0000","#FFFF00","#00FF00","#00FFFF","#0000FF","#FF00FF","#ED1C24","#FFF200","#00A651","#00AEEF","#2E3192","#EC008C","#FF0000"];
+  var container = $("#container");
+  const svgUrl    = "https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg";
+
+
+  var  tlMax = new TimelineMax() ;
+  $.get(svgUrl)
+    .then(injectSvg)
+    .always(doAnimation);
+  
+  function injectSvg(xmlDoc) {
+    var svg = $(xmlDoc).find("svg");
+    container.append(svg);
+	svg.attr("id","svg");
+	svg.attr("width","300");
+  }
+  
+  function initClasses(){
+  // TODO add css classes to make animation targets a) for multiple items in svg b) for items where the id doesn't make it to the SVG output
+  $("* ").addClass("background");
+    $("#a").addClass("background");
+  $("#svg-text *").addClass("svg");
+    $("#svg-text").addClass("svg");
+	
+
+  }
+  
+  function fetchCSVfile2 (filePath)
+  {
+  var allText;
+    var allTextLines = [];
+    var Lines = [];
+
+    var txtFile = new window.XMLHttpRequest();
+    txtFile.open("GET", filePath);
+	txtFile.send(null);
+    txtFile.onreadystatechange = function()
+    {
+	console.log("txtFile.readyState-1=" + txtFile.readyState+"***" );
+	if (txtFile.readyState == "4"){
+		   console.log(111111111111);
+        allText = txtFile.response;
+				console.log("txtFile=");
+		console.log(txtFile);
+		var audioMarkersArray = $.csv.toArrays(allText);
+	console.log("allText="+allText);
+	console.log("audioMarkersArray="+audioMarkersArray);
+	return(audioMarkersArray);
+
+		// var audioMarkersArray = $.csv.toArrays(allText);
+		}
+    };
+
+}
+  
+  function fetchCSVfile (filePath)
+  {
+  
+   var toto = $.get(filePath, function fileLoaded(){console.log("Loaded!!!"); }) // .responseText ;
+     console.log("toto=" + toto);
+	 console.log("toto.readyState= " + toto.readyState );
+     console.log("toto.responseText=" + toto.responseText);
+       toto.onreadystatechange = function()
+    {
+	console.log("toto.readyState= " + toto.readyState );
+	if (toto.readyState == 4){
+		   console.log("aaaaaaaaa");
+        allText = toto.responseText;
+        allTextLines = toto.split(/\r\n|\n/);
+		var audioMarkersArray = $.csv.toArrays(allText);
+		console.log("audioMarkersArray="+audioMarkersArray);
+		return audioMarkersArray;
+		}
+		}
+
+   
+   /*
+  var allText = [];
+    var allTextLines = [];
+    var Lines = [];
+
+    var txtFile = new window.XMLHttpRequest();
+    txtFile.open("GET", filePath);
+	txtFile.send(null);
+    txtFile.onreadystatechange = function()
+    {
+	console.log("txtFile.readyState-1=" + txtFile.readyState+"***" );
+	if (txtFile.readyState == "4"){
+		   console.log(111111111111);
+        allText = txtFile.responseText;
+        allTextLines = allText.split(/\r\n|\n/);
+		var audioMarkersArray = $.csv.toArrays(allText);
+		}
+    };
+	return(audioMarkersArray);
+	*/
+/*
+    document.write(allTextLines);<br>
+    document.write(allText);<br>
+    document.write(txtFile);<br>
+	*/
+}
+
+
+
+  function doAnimation() {
+  console.log(666666666666);
+initClasses();
+	   var audioMarkersArray = fetchCSVfile2("audio/Markers.csv");
+	//    audioMarkers ="ph1	0:00.000	0:02.000	decimal	Cue";
+	    console.log(222222222222);
+ 
+		
+	 
+	
+
+var tl1= test();
+var tl2= getSecond();
+var tl3= getThird();
+
+tl1.duration(2);
+tl2.duration(1);
+tl3.duration(3);
+
+var master = new TimelineLite();
+master.add(tl1);
+master.add(tl2);
+master.add(tl3);
+
+  } // end doanimation
+ 
+ function test() {
+
+  var tl = new TimelineLite();
+    // TODO: add console.log statements with output like toto = toto (easy to check)
+  console.log('$(".background")=' );
+  console.log($(".background"));
+    console.log('$(".svg")='+$(".svg") );
+  // output should be in the form:
+  // hw_background1 = hw_background1 
+  
+  // TODO: add blink + text to test different areas behave as expected
+  // tl.to(".background", 2, { fill:"#000000", stroke:"#000000"});
+  // tl.to(".svg", 2, {opacity:1, fill:"#ffffff", stroke:"#ff0000"});
+  // tl.to(".background", 2, { clearProps:"all"}, "+=2");
+  tl.to(".svg", 2, {opacity:0, });
+  tl.to(".svg", 0, {clearProps:"all"}, "+=2");
+   return tl;
+}
+
+function getSecond() {
+  var tl = new TimelineLite();
+   tl.to("#svg-text", 2, {scale:2, x:"10"});
+     tl.duration(2);
+  return tl;
+}
+
+function getThird() {
+  var tl = new TimelineLite();
+     tl.to("#svg-text", 2, {rotation:90});
+  return tl;
+}
+ 
+  
+}); // end jQuery
+</script>
+
+</body>
+</html>

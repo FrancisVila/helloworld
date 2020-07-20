@@ -1,0 +1,212 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<style>
+.go {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.boost {
+    background-color: #AF8C50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+</style>
+	
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenLite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/plugins/CSSPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TimelineMax.min.js"></script>
+<script src="easing/CustomEase.min.js"></script>
+<script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+<script>
+
+
+$( document ).ready(function() {
+    console.log( "ready!" );
+	// instantiate TimelineMax 
+	// repeat:-1 means loop forever
+	
+
+	
+var startTime=0;
+var duration=2;
+const tlMax = new TimelineMax({repeat:-1});
+const tl = new TimelineLite();
+
+const $cyclicObjects = $('#cyclicObjects');
+const $ball =  $('#ball');
+const $boost =  $('#boost');
+const $barrier1 =  $('#barrier1');
+const $barrier2 =  $('#barrier2');
+const $barriers =  $('#barriers');
+const $svg =  $('#Layer_1');
+const $fullSlope= $('#fullSlope'); 
+// SNAP
+        var paper, map, spaceship, thruster, moon, flight_path, flight_path_length, last_point;
+// paper               = map;
+// map                 = Snap('#Layer_1');
+// flight_path         = map.path("M697,393.5c-430.5-22.5-487-290-565-364C104.14,3.06,0,.5,0,.5").attr({ 'fill': 'none', 'stroke': 'none'});;
+ 
+TweenLite.to($ball, 0, {scale:3});
+
+tl.timeScale( 10 );
+
+$("#goButton").click(function(e) {
+ console.log( "go" );
+ e.preventDefault();
+ // roll up to the barrier
+pause=0; startTime=0; duration=3;
+tl.to($cyclicObjects, 3, {x: -1560, ease: Bounce.easeOut}, "begin")
+.to($ball, 3, 	{rotation: 1080, 	transformOrigin:"50% 50%", 	ease: Bounce.easeOut},"begin" );
+
+
+
+// back for second try
+tl.add("back1", "+=2"); duration=0.5;
+tl.to($ball, duration, {x: "-=200", ease:   Power2.easeOut}, "back1" )
+.to($ball, duration, {rotation: "-=30", ease:  Power2.easeOut}, "back1" )
+
+// same player try again
+tl.add("try2", "+=1"); duration=0.3;
+tl.to($ball, duration, {x: "+=200", ease: CustomEase.create("custom", "M0,0 C0.14,0 0.29,0.427 0.32,0.55 0.361,0.717 0.354,0.963 0.362,1 0.37,0.985 0.479,0.484 0.52,0.422 0.575,0.337 0.595,0.397 0.608,0.406 0.684,0.456 0.719,0.981 0.726,0.998 0.788,0.914 0.774,0.714 0.834,0.74 0.887,0.763 0.897,0.985 0.911,0.998 0.922,0.994 0.929,0.88 0.944,0.88 0.959,0.88 1,1 1,1" )} , "+=1");
+
+// back for 3d try
+
+tl.add("try3", "+=1"); duration=0.5;
+tl.to($ball, duration, {x: "-=400", ease:  Back. easeOut.config( 1.7)}, "try3" );
+tl.to($ball, duration, {rotation: "-=30", ease:  Back. easeOut.config( 1.7),}, "try3" );
+// same player try again
+tl.to($ball, 0.3, {x: "+=400", ease: CustomEase.create("custom", "M0,0 C0.14,0 0.29,0.427 0.32,0.55 0.361,0.717 0.354,0.963 0.362,1 0.37,0.985 0.479,0.484 0.52,0.422 0.575,0.337 0.595,0.397 0.608,0.406 0.684,0.456 0.719,0.981 0.726,0.998 0.788,0.914 0.774,0.714 0.834,0.74 0.887,0.763 0.897,0.985 0.911,0.998 0.922,0.994 0.929,0.88 0.944,0.88 0.959,0.88 1,1 1,1" )}, "+=1" );
+
+ 
+ })
+ 
+ $("#boostButton").click(function(e) {
+  console.log( "boost" );
+   e.preventDefault();
+   // get first boost
+tl.add("boost1", "+=3"); duration=2;
+tl.to($ball, duration, {y: "-=255", ease: Power2. easeInOut}, "boost1" );
+tl.to($boost, duration, {y: "-=255", ease: Power2. easeInOut}, "boost1" );
+
+
+// roll forward to second barrier
+tl.add("roll2", "+=2"); duration=2;
+tl.to($ball, duration, {x: "+=224", ease:  Power2. easeInOut}, "roll2" )
+.to($ball, duration, {rotation: "+=60", ease:  Power2. easeInOut}, "roll2" );
+
+
+// get second boost
+tl.add("boost2", "+=2"); duration=2;
+tl.to($ball, duration, {y: "-=130", ease:  Power2. easeInOut}, "boost2")
+.to($barrier1, duration, {y: "-=130", ease:  Power2. easeInOut}, "boost2");
+
+
+
+// roll forward top right
+tl.add("roll3", "+=2"); duration=2;
+tl.to($ball, duration, {x: "+=224", ease:  Power2. easeInOut}, "roll3" )
+.to($ball, duration, {rotation: "+=60", ease:  Power2. easeInOut}, "roll3" );	
+
+
+
+// roll back barriers
+
+tl.add("barriersBack", "+=2"); duration=2;
+tl.to($barriers, duration, {x: "-=450", ease: Power2. easeInOut}, "barriersBack" )	
+.to($ball, duration, {x: "-=730", ease: Power2. easeInOut}, "barriersBack" )
+.to($cyclicObjects, duration, {x: "-=450", ease: Power2. easeInOut}, "barriersBack" );
+
+
+
+
+
+// slide down slope
+tl.add("slideDown"); duration=0.5; 
+tl.to($ball, duration, {x: "+=560", ease: Power2. easeInOut}, "slideDown" )
+.to($ball, duration, {y: "+=385", ease: Power2. easeInOut}, "slideDown" );
+tl.to($ball, duration, {rotation: "+=180", ease:  Power2. easeInOut}, "slideDown" );
+
+
+// scroll forward to see ball again
+duration=0.5; tl.add("seeBallAgain")
+tl.to($cyclicObjects, duration, {x: "-=1000", ease: Power2. easeIn}, "seeBallAgain" )
+.to($ball, duration, {x: "300", ease: Power2. easeIn}, "seeBallAgain" )
+.to($ball, duration, {rotation: "1440", ease:  Power2. easeInOut}, "seeBallAgain" );
+
+// tl.restart();
+// tl.pause(0); //Go back to the start (true is to suppress events)
+//tl.remove();
+  console.log( "end boost" );
+   })
+ 
+
+})
+
+
+</script>
+<title>alphabet loop</title>
+</head>
+<body bgcolor="#EFEFEF" text="#333333" link="#71b200" leftmargin="20" topmargin="20" marginwidth="20" marginheight="20">
+
+<div style="text-align:center; width:100%">
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width=400 height=300 >
+  <title>alphabetLoop</title>
+  <rect id="whole" width="2400" height="600" style="fill: #fff"/>
+  <rect id="start" width="800" height="600" style="fill: #dd9"/>
+    <rect id="finish" x="1600" width="800" height="600" style="fill: #fff"/>
+	<g id="cyclicObjects"  transform="translate(950 0)">
+		<g id="letters" opacity="0.25" >
+		<text transform="translate(0 465)" style="font-size: 400px;font-family: MyriadPro-Bold, Myriad Pro;font-weight: 700">A</text>
+		  <text transform="translate(560 465)" style="font-size: 400px;font-family: MyriadPro-Bold, Myriad Pro;font-weight: 700">C</text>
+		  <text transform="translate(295 465)" style="font-size: 400px;font-family: MyriadPro-Bold, Myriad Pro;font-weight: 700">B</text>
+		  <text transform="translate(824 465)" style="font-size: 400px;font-family: MyriadPro-Bold, Myriad Pro;font-weight: 700">D</text>
+		  <text transform="translate(1370 465)" style="font-size: 400px;font-family: MyriadPro-Bold, Myriad Pro;font-weight: 700">F</text>
+		  <text transform="translate(1130 465)" style="font-size: 400px;font-family: MyriadPro-Bold, Myriad Pro;font-weight: 700">E</text>
+
+		  <text transform="translate(1600 465)" style="font-size: 400px;font-family: MyriadPro-Bold, Myriad Pro;font-weight: 700">A</text>
+		  <text transform="translate(1895 465)" style="font-size: 400px;font-family: MyriadPro-Bold, Myriad Pro;font-weight: 700">B</text>
+		  <text transform="translate(2160 465)" style="font-size: 400px;font-family: MyriadPro-Bold, Myriad Pro;font-weight: 700">C</text>
+		</g>
+		<g id="barriers" transform="translate(1910 0)">
+			<rect id="boost" transform="translate(0 600)"  width="255" height="400" style="fill: #999"/>
+			<rect id="barrier1" transform="translate(180 344)" width="230" height="600" style="fill: #999"/>
+			<rect id="barrier2" transform="translate(410 215)" width="230" height="800" style="fill: #999"/>
+			<polygon id="fullSlope" transform="translate(640 215)"  points="0 0 0 390 560 390 0 0" style="fill: #999;"/>
+		</g>
+	</g>
+	<g id="ball" transform="translate(300 365)"  >
+	<circle  r="46" style="fill: red"/>
+	<circle  r="5" style="fill: white" transform="translate(30 -15)" />
+	
+
+	</g>
+	
+</svg>
+<br><br>
+<button class="go" id="goButton">Go ></button> <button class="boost" id="boostButton">Boost</button> </div>
+</div>
+</body>
+</html>

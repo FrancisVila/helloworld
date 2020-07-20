@@ -1,0 +1,73 @@
+/**
+ * UX: This to override legacy.css.
+ * The copy/paste is from Boostrap.
+ * Durty but clean it a bit by inserting the class with LESS.
+ */
+
+.Axway-Community-Search .input-group .input-lg:not(:first-child):not(:last-child) {
+    height: 48px;
+    padding: 10px 16px;
+    line-height: 1.3333333;
+    border-radius: 0;
+    overflow: hidden;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border: 1px solid #43a7be;
+    border-right: none;
+    flex: 1 1 auto;
+}
+
+.Axway-Community-Search .input-group .input-lg:not(:first-child):not(:last-child):nth-child(2) {
+    border-bottom-left-radius: 24px;
+    border-top-left-radius: 24px;
+}
+
+.Axway-Community-Search .input-group-btn {
+	background: white;
+    border-radius: 24px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border: 1px solid #43a7be;
+    border-left: none;
+    width: auto;
+    height: 48px;
+    line-height: 48px;
+    display: block !important;
+}
+
+.Axway-Community-Search .input-group .btn-lg {
+    border: none;
+    background: none;
+}
+
+.Axway-Community-Search .input-group i {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    margin: 0;
+    color: black;
+}
+
+.Axway-Community-Search .input-group {
+    display: flex;
+}
+
+.Axway-Community-Search [class^=row]::before,
+.Axway-Community-Search [class^=row]::after {
+    display: none;
+}
+
+@media (min-width: 1200px) {
+    #sp-page-builder .sppb-section .sppb-col-md-6:nth-child(2n - 1) .Axway-Community-Search p {
+        text-align: right;
+    }
+    #sp-page-builder .sppb-section .sppb-col-md-6:nth-child(2n - 1) .Axway-Community-Search .row {
+        display: flex;
+        justify-content: flex-end;
+    }
+    #sp-page-builder .sppb-section .sppb-col-md-6:nth-child(2n - 1) .Axway-Community-Search .col-md-2 {
+        width: auto;
+        display: block;
+    }
+}

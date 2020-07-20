@@ -1,0 +1,291 @@
+.Axway-Quicknav {
+    position: fixed;
+    top: auto;
+    left: auto;
+    transform: none;
+    right: 20px;
+    bottom: 90px;
+    z-index: 10000;
+    font-size: 14px;
+}
+
+.Axway-Quicknav button {
+    background: white;
+    color: #222222;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: 24px;
+}
+
+@media (min-width: 1200px) {
+    .Axway-Quicknav {
+        top: 20px;
+        left: 60px;
+        right: auto;
+        bottom: auto;
+    }
+
+    .Axway-Quicknav button {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .Axway-Quicknav {
+        left: 120px;
+    }
+}
+
+.Axway-Quicknav button:focus+.Axway-Quicknav-Tabs {
+    display: block;
+}
+
+body.axway-devportal-home .Axway-Quicknav button {
+    color: black;
+    border: 1px solid black;
+}
+
+.Axway-Quicknav .sppb-tab-content {
+    background: none;
+    margin: 0;
+    border: none;
+}
+
+.Axway-Quicknav .sppb-nav-tabs>li {
+    margin: 0;
+}
+
+.Axway-Quicknav p i {
+    margin-right: 10px;
+}
+
+.Axway-Quicknav footer {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #c8c9c7;
+    padding-top: 20px;
+    margin-top: 20px;
+    width: 100%;
+    font-size: 80%;
+    float: left;
+}
+
+.Axway-Quicknav footer a {
+    font-weight: 700;
+    text-align: right;
+    white-space: nowrap;
+    margin-right: 20px;
+}
+
+.Axway-Quicknav footer a:last-of-type {
+    margin-right: 0;
+}
+
+.Axway-Quicknav footer p {
+    width: 100%;
+}
+
+.Axway-Quicknav .sppb-nav-tabs>li.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4px;
+    background: #43a7be;
+}
+
+.Axway-Quicknav .sppb-nav-tabs>li>a {
+    border: none;
+    background: none;
+    white-space: nowrap;
+    padding: 20px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.Axway-Quicknav-Tabs {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 170px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    display: none;
+}
+
+.Axway-Quicknav-Tabs::after {
+    content: '';
+    position: absolute;
+    top: auto;
+    bottom: -6px;
+    right: 30px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    transform: rotate(45deg);
+    transform-origin: 0 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+@media (min-width: 768px) {
+    .Axway-Quicknav-Tabs {
+        left: 60px;
+        right: 20px;
+        top: 120px;
+    }
+
+    .Axway-Quicknav-Tabs::after {
+        right: 10px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .Axway-Quicknav-Tabs {
+        position: absolute;
+        left: 0;
+        top: calc(100% + 19px);
+        right: auto;
+        bottom: auto;
+    }
+    
+    .Axway-Quicknav-Tabs::after {
+        top: -10px;
+        left: 20px;
+        bottom: auto;
+        right: auto;
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.Axway-Quicknav-Tabs h2 {
+    position: relative;
+    width: 100%;
+    font-size: 130%;
+    font-weight: 700;
+    padding: 20px;
+    padding-bottom: 10px;
+}
+
+.Axway-Quicknav-Tabs h3 {
+    font-weight: 700;
+    font-size: 100%;
+}
+
+.Axway-Quicknav-Tabs p {
+    font-weight: 300;
+}
+
+.Axway-Quicknav-Tabs .sppb-tab-content a i {
+    margin-right: 10px;
+    color: #43a7be;
+}
+
+.Axway-Quicknav-Tabs a,
+.Axway-Quicknav-Tabs a:active,
+.Axway-Quicknav-Tabs a:focus {
+    text-decoration: none;
+    font-weight: 300;
+}
+
+.Axway-Quicknav-Tabs:hover {
+    display: block;
+}
+
+.Axway-Quicknav-Tabs .sppb-addon-tab {
+    position: absolute;
+    background: white;
+    border-radius: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.Axway-Quicknav-Tabs .sppb-nav-tabs {
+    display: flex;
+    padding-left: 0;
+}
+
+@media (min-width: 1200px) {
+    .Axway-Quicknav-Tabs h2 {
+        position: absolute;
+        width: auto;
+    }
+
+    .Axway-Quicknav-Tabs .sppb-addon-tab {
+        position: relative;
+    }
+
+    .Axway-Quicknav-Tabs .sppb-nav-tabs {
+        padding-left: 180px;
+    }
+}
+
+.Axway-Quicknav-Tabs .sppb-tab-pane {
+    padding: 20px;
+}
+
+.Axway-Quicknav-Tabs .sppb-tab-content ul:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.Axway-Quicknav-Tabs .sppb-tab-content ul:first-of-type {
+    margin-bottom: 20px;
+}
+
+.Axway-Quicknav-Tabs .sppb-tab-content li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.Axway-Table-List ul {
+    display: table;
+}
+
+.Axway-Table-List li {
+    display: table-row;
+}
+
+.Axway-Table-List li:not(:last-child) small {
+    margin-bottom: 10px;
+}
+
+.Axway-Table-List li h4,
+.Axway-Table-List li b {
+    display: table-cell;
+}
+
+.Axway-Table-List li h4 a {
+    font-size: 100%;
+}
+
+.Axway-Table-List li b {
+    color: #43a7be;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.Axway-Table-List li b small {
+    display: block;
+    font-weight: 300;
+}
+
+.Axway-Table-List li h4 small {
+    display: table;
+    font-weight: 300;
+}

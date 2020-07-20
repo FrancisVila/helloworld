@@ -1,0 +1,31 @@
+.Axway-Links-Set a {
+    display: flex;
+    text-decoration: none;
+    font-weight: 700;
+    word-break: break-word;
+    justify-content: flex-start;
+}
+
+.Axway-Links-Set a:hover {
+    text-decoration: none;
+}
+
+.Axway-Links-Set a::before {
+    content: '\e915';
+    width: 16px;
+    height: 16px;
+    display: inline;
+    font-family: "Axway-Developer-Portal-Icons";
+    margin-right: 7px;
+    font-weight: normal;
+}
+
+@media (min-width: 1200px) {
+    #sp-page-builder .sppb-section .sppb-col-md-6:nth-child(2n - 1) .Axway-Links-Set[data-alignment=right] a {
+        justify-content: flex-end;
+    }
+
+    #sp-page-builder .sppb-section .sppb-col-md-6:nth-child(2n) .Axway-Links-Set[data-alignment=right] a {
+        float: flex-start;
+    }
+}

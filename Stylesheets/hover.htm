@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>hover demo</title>
+  <style>
+  body {
+  font-family: sans-serif;
+  padding:20px;
+}
+  ul {
+    margin-left: 20px;
+    color: blue;
+  }
+  li {
+    cursor: default;
+  }
+  span {
+    color: red;
+  }
+  
+    .highlight {
+background-color:#FDA;
+}
+  
+  v.highlight {
+background-color:#FA0;
+}
+  entry  {
+  display:block;
+border:1px solid #ccc;
+background-color: #f6f6f6;
+max-width: 800px;
+margin-bottom: 10px;
+padding: 3px;
+}
+
+axway_prod, other_prod {
+background-color:#ddd;
+padding-left:3px;
+padding-right:3px;
+}
+
+vers {background-color:#ffe;}
+
+vers:hover {
+cursor:pointer;
+}
+
+
+h1, h2, h3, h4 {color:#A50034;}
+
+  </style>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+<body>
+<entry><i><b>Help</b>: Hover over <vers>yellow text</vers> to highlight similar dependencies. Click to pin/unpin.</i></entry>
+<h3>Central Governance (CG) on Windows</h3>
+ <entry>
+ <axway_prod>CG  1.1-1.4</axway_prod> runs on 
+ <other_prod>Windows</other_prod> <vers class="2012"><v>2012</v></vers>, <vers class="2012_R2"><v>2012 R2</v></vers>, <vers class="2016"><v>2016</v></vers>, <vers class="2016_R2"><v>2016 R2</v></vers>
+ </entry>
+ 
+  <entry>
+ Quam ob rem cave Catoni anteponas ne <axway_prod>CG 1.3</axway_prod> istum quidem ipsum, quem Apollo, ut ais, <other_prod>Windows</other_prod> <vers class="2012_R2"><v>2012 R2</v></vers> sapientissimum iudicavit; huius enim facta, illius dicta laudantur. De me autem, ut iam cum utroque vestrum loquar, sic habetote.
+  </entry>
+  
+ 
+  <entry>
+ <axway_prod>CG 1.5</axway_prod> runs on 
+ <other_prod>Windows</other_prod> <vers class="2016_R2"><v>2016 R2</v></vers>, <vers class="2018"><v>2018</v></vers>
+ </entry>
+ 
+   <entry>
+Sed si ille hac tam eximia fortuna propter utilitatem rei <axway_prod>CG  1.3+</axway_prod> publicae frui non properat, ut omnia illa conficiat, quid ego, senator, <other_prod>Windows</other_prod> <vers class="2016"><v>2016</v></vers> facere debeo, quem, etiamsi ille aliud vellet, rei publicae consulere oporteret? 
+
+ </entry>
+ 
+ <h3>Sentinel (ST) on Windows</h3>
+ <entry>
+ <axway_prod>ST 2.2-2.4</axway_prod> runs on 
+ <other_prod>Windows</other_prod> <vers class="8_pro"><v>8 Pro</vers>, <vers class="10_pro"><v>10 Pro</v></vers>, <vers class="2016"><v>2016</v></vers> 
+ </entry>
+  <entry>
+ <axway_prod>ST 2.5+</axway_prod> runs on 
+ <other_prod>Windows</other_prod> <vers class="10_pro"><v>10 Pro</vers>, <vers class="2016_R2"><v>2016 R2</v></vers>, <vers class="2016"><v>2016</v></vers>
+ </entry>
+   <entry>Ubi ad Septembris mittunt municipium
+ <axway_prod>ST 2.3-2.5</axway_prod> magna sollemnitate  
+ <other_prod>Windows</other_prod>  <vers class="2012"><v>2012</v></vers>, <vers class="10_pro"><v>10 Pro</v></vers>, <vers class="2012_R2"><v>2012 R2</v></vers> refertum in in.
+ </entry>
+  
+ 
+<script>
+$( "vers" ).hover(
+  function() {
+  console.log("IN ." + this.className)
+  $(this).prop('title', 'click to pin/unpin');
+  $("." + this.className +" > v").addClass( "highlight"  );
+  $("." + this.className).parent().children("axway_prod").addClass( "highlight"  );
+    $("." + this.className).parent().children("other_prod").addClass( "highlight"  );
+  }, function() {
+    console.log("OUT " + "." + this.className +".parent > axway_prod")
+	if(! $("." + this.className+" > v").hasClass(  "pin" ))
+	{
+    $("." + this.className+" > v").removeClass(  "highlight" );
+	    $("." + this.className).parent().children("axway_prod").removeClass( "highlight"  );
+		$("." + this.className).parent().children("other_prod").removeClass( "highlight"  );
+		}
+  }
+);
+
+
+$( "vers" ).click(function() {
+  console.log("IN ." + this.className)
+  $("." + this.className+" > v").toggleClass( "pin"  );
+  })
+  
+ 
+$( "vers.fade" ).hover(function() {
+  $( this ).fadeOut( 100 );
+  $( this ).fadeIn( 500 );
+});
+</script>
+ 
+</body>
+</html>

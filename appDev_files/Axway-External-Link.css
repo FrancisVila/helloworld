@@ -1,0 +1,54 @@
+.Axway-External-Link {
+    border-radius: 24px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    min-height: 48px;
+    padding: 5px 35px;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #E82C2A;
+    border: 1px solid #E82C2A;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.06);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    float: left;
+}
+
+.Axway-External-Link[data-style="sc"] {
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+.Axway-External-Link:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.Axway-External-Link i {
+    font-size: 6vw;
+    margin-right: 15px;
+    margin-left: -15px;
+}
+
+@media (min-width: 768px) {
+    .Axway-Round-Button i {
+        font-size: 3vw;
+    }
+}
+
+@media (min-width: 1200px) {
+    #sp-page-builder .sppb-section .sppb-col-md-6:nth-child(2n - 1) .Axway-External-Link {
+        float: right;
+    }
+
+    #sp-page-builder .sppb-section .sppb-col-md-6:nth-child(2n) .sppb-col-md-6 .Axway-External-Link {
+        float: left;
+    }
+
+    .Axway-Round-Button i {
+        font-size: 1.5vw;
+    }
+}

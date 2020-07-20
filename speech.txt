@@ -1,0 +1,22 @@
+The hybrid integration platform sounds complex
+It's not really
+It's multi-faceted
+What makes it sound complicated is that it is approached as a hierarchy (the opposite of multi-faceted): platform / doc portal / development portal
+  MFT / API Management / Content Collaboration then in API Management there's API Buider....
+  or public cloud / 
+if you feel at ease with all that, you're smarter than I am.
+To show something simple, we need an interface that takes the multi-faceted nature into account. 
+Multi faceted does not have to mean complicated, I hope the demo will help you see what I mean
+But before I start clicking away, I would like to point out another objective 
+Serve as a bridge between the world of axway.com and the technical nuts and bolts of the Doc platform, the Axway community, etc.
+A vertical shaft (a vertical tunnel) through which  the light from above of marketing promises and the face of the mine
+Often in the engine rooms we feel we live in a different world from what you read on axway.com 
+this demo attempts to break the silos between axway.com and the portals
+So building the stairway to heaven
+As a side note I've been involved in the conversion to the doc portal - docs used to be stored on the support portal (aka "sphere") . Everybody prefers the doc portal, except for one thing.  what they miss is having everything in the same place - docs, downloads, announcements. This architecture keeps that, but adds the modern touch. Lately I read a blog post by Vince Padua about being "default to ON" OKR ("On" means providing our customers and users *one place* to manage their integration tools, artifacts, and services). This project is an attempt to regain that coherence.
+
+I'd like to stress the difference between the filters used here and a search mechanism. With search you lose the context of the page and get a time lag. With these filter you stay on the same page (one of the basics of user experience) and the response is immediate. This makes exploration risk-free. I can tell you the feel is completely different.
+
+Free: suppose I don't have any budget at all... Maybe I'm a candidate, I'm preparing an interview to come and work at Axway. I want to score a few points by showing my interest in what Axway is doing, so apart from reading up articles, I want to see what I can try out.  
+
+Launch: I watched a demo by Vlad Mihai (?) showing how he used AMPLIFY Integration Builder. Didn't understand much of it, but I did understand was that to achieve what he was doing, he was switching all the time between the tools of the platform (Integration builder, Central, etc ). He knew the tools   and that he wouldn't want all this intro stuff getting in the way. 

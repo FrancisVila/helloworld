@@ -1,0 +1,65 @@
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<style>
+</style>
+	
+<script src="plugins/TweenLite.min.js"></script>
+<script src="plugins/TweenMax.min.js"></script>
+<script src="plugins/CSSPlugin.min.js"></script>
+<script src="plugins/TimelineMax.min.js"></script>
+<script src="plugins/TweenMax.min.js"></script>
+<script src="plugins/CustomEase.min.js"></script>
+<script src="plugins/DrawSVGPlugin.min.js"></script>
+<script src="plugins/GSDevTools.min.js"></script>
+<script src="plugins/CSSPlugin.min.js"></script>
+<script src="plugins/Draggable.min.js"></script>
+<script src="plugins/MorphSVGPlugin.min.js"></script>
+<script src="plugins/jquery.csv.min.js"></script>
+
+
+
+
+
+
+<script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+
+
+
+<title>Hello World template (or sample?)</title>
+</head>
+<body  text="#333333" link="#71b200" leftmargin="20" topmargin="20" marginwidth="20" marginheight="20" bgcolor="#eeeeee">
+
+<div style="text-align:center; width:100%">
+<h1></h1>
+
+  <div id="container" style="width:100%; height:100%"></div>
+
+<script type="text/javascript">
+
+    $.ajax({
+        type: "GET",
+        url: "audio/Markers.csv",
+        dataType: "text",
+        success: function(data) {
+            alert(data);
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert("Status: " + xhr.status + "     Error: " + thrownError);
+        }
+    });
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+
+[class^="icon-"]:before,[class*=" icon-"]:before {
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.breadcrumbs {font-size:12px;}
+
+.headerbodyfooter {max-width:1302px;
+margin:auto;}
+
+footer {max-width:1302px;}
+
+footer {display:none !important;}
+
+.container.fluid{
+    width: 100%;
+}
+.container.fluid #footer-main-nav{
+    max-width: 100%;
+}
+
+footer.moveDown {
+	bottom: 0;
+    margin-right: 0;
+    padding-right: 0;
+    position: absolute;
+    right: 0;
+    width: 100%;
+	margin-bottom:0px;
+}
+
+footer.moveDown .navbar-inner {
+	padding-left: 20px;
+	
+}
+
+
+#footer-main-nav h3{
+    color: rgba(255,255,255, 0.53)
+}
+.container.fluid .copy.row{
+    max-width: 100%;
+}
+.icon-no-margin:before {
+  margin-right: 0 !important;
+}
+
+i.icon-xxl,span.icon-xxl {
+  font-size: 80px !important;
+}
+
+i.icon-xl,span.icon-xl {
+  font-size: 48px !important;
+}
+
+i.icon-l2,span.icon-l2 {
+  font-size: 36px !important;
+}
+
+i.icon-l,span.icon-l {
+  font-size: 24px !important;
+}
+
+i.icon-md,span.icon-md {
+  font-size: 18px !important;
+}
+
+i.icon-md2,span.icon-md2 {
+  font-size: 14px !important;
+}
+
+i.icon-sm,span.icon-sm {
+  font-size: 12.5px !important;
+}
+
+i.icon-xs,span.icon-xs {
+  font-size: 10.5px !important;
+}
+
+i.icon-xxs,span.icon-xxs {
+  font-size: 8.5px !important;
+}
+
+i.icon-clr-apple,span.icon-clr-apple {
+  color: #96979a !important;
+}
+
+i.icon-clr-android,span.icon-clr-android {
+  color: #93b055 !important;
+}
+
+i.icon-clr-windows,span.icon-clr-windows {
+  color: #68217a !important;
+}
+
+i.icon-clr-linux,span.icon-clr-linux {
+  color: #000 !important;
+}
+
+.icon-mobileweb:before {
+  content: '\e816';
+}
+
+div#search-wrap{
+    position: relative;
+}
+div#search-wrap form{
+    height: 30px;
+    margin-top: 8px;
+    line-height: 20px;
+    border-radius: 20px;
+    border: 1px solid white;
+    background: white;
+}
+div#search-wrap form input{
+    position: relative;
+    width: 80%;
+    height: 29px;
+    margin: 0px;
+    padding: 7px;
+    float: left;
+    background: none;
+    border: none;
+    color: #484848;
+    box-shadow: none;
+}
+div#search-wrap form input:focus{
+    outline: none;
+}
+div#search-wrap form i.fa-search{
+    position: relative;
+    float: left;
+    color: #848484;
+    margin: 8px;
+    cursor: pointer;
+}
+
+ul.list-inline{
+    margin-left: 0;
+    padding-left: 0;
+}
+ul.list-inline li{
+    display: inline-block;
+    padding-right: 5px;
+    list-style: none;
+}
+ul.list-unstyled{
+    padding-left: 0;
+    margin-left: 0;
+}
+ul.list-unstyled li{
+    list-style: none;
+}
+.icon-th,.icon-th-list {
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: none;
+  font-smoothing: none;
+  font-size: 14px !important;
+}
+
+body.has-appc-unified-header {
+  padding-top: 45px;
+}
+
+body.has-appc-unified-header.has-appc-unified-banner {
+  padding-top: 65px;
+}
+
+body.has-appc-unified-footer {
+  padding-bottom: 30px;
+}
+
+body.has-appc-unified-feed {
+  overflow-y: hidden;
+}
+
+body.has-appc-unified-scroll {
+  padding-right: 15px;
+}
+
+body.has-appc-unified-scroll #appc-unified-footer,body.has-appc-unified-scroll #appc-unified-header-nav {
+  padding-right: 15px;
+}
+
+.copy{
+	margin-top: 40px;
+}
+
+.social li{
+	padding-left: 0;
+}
+.social .fa{
+	font-size: 16px;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+	border-radius: 50%;
+    background: #bbb none repeat scroll 0 0;
+    color: #2d2d2d;
+}
+.social .fa:hover{
+	background: #fff;
+}
+
+.feedback{
+	width: 100px;
+	height: 35px;
+	line-height: 30px;
+	position: fixed;
+	top: 30%;
+	right: -35px;
+	text-align: center;
+	color: #fff;
+	transform: rotate(90deg);
+	background: #0c68af;
+}
+.feedback:hover{
+	color: #fff;
+	background: #23527c;
+}

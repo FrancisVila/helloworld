@@ -1,0 +1,104 @@
+.Axway-Marketplace-Tile {
+    position: relative;
+    margin-bottom: 15px;
+    opacity: 1;
+    transition: opacity 0.6s;
+}
+
+.Axway-Marketplace-Tile::after {
+    content: '';
+    display: block;
+    box-sizing: border-box;
+    padding-top: 56.25%;
+}
+
+.Axway-Marketplace-Tile:hover {
+    opacity: 0.8;
+}
+
+.Axway-Marketplace-Tile i {
+    color: white;
+    font-size: 6vw;
+    z-index: 2;
+    margin-bottom: 15px;
+}
+
+.Axway-Marketplace-Tile>a {
+    display: flex;
+    position: absolute;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    height: 100%;
+    width: calc(100% - 15px);
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-decoration: none;
+    padding: 15px;
+}
+
+.Axway-Marketplace-Tile>a:hover {
+    text-decoration: none;
+}
+
+.Axway-Marketplace-Tile>a::before {
+    content: '';
+    background: transparent left top no-repeat;
+    background-image: url(https://www.axway.com/themes/custom/axway/img/griffin-white.svg);
+    background-size: contain;
+    display: block;
+    height: 100%;
+    right: -25%;
+    position: absolute;
+    top: 50%;
+    width: 240px;
+    opacity: 0.1;
+    transform: translate(0, -50%);
+}
+
+.Axway-Marketplace-Tile h4 {
+    color: white;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.Axway-Marketplace-Tile p {
+    position: absolute;
+    font-size: 90%;
+    font-weight: bold;
+    left: 15px;
+    right: 15px;
+    top: 15px;
+    background: none;
+    color: white;
+    text-align: right;
+}
+
+.Axway-Marketplace-Tile:nth-of-type(4n + 1)>a {
+    background-color: #84939A;
+}
+
+.Axway-Marketplace-Tile:nth-of-type(4n + 2)>a {
+    background-color: #2C3A43;
+}
+
+.Axway-Marketplace-Tile:nth-of-type(4n + 3)>a {
+    background-color: #14899A;
+}
+
+.Axway-Marketplace-Tile:nth-of-type(4n + 4)>a {
+    background-color: #E62F33;
+}
+
+@media (min-width: 768px) {
+    .Axway-Marketplace-Tile i {
+        font-size: 3vw;
+    }
+}
+
+@media (min-width: 1200px) {
+    .Axway-Marketplace-Tile i {
+        font-size: 1.5vw;
+    }
+}

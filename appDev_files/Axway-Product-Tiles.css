@@ -1,0 +1,122 @@
+.Axway-Product-Tiles {
+    display: block;
+    margin-bottom: -15px;
+}
+
+.Axway-Product-Tile {
+    position: relative;
+    margin-bottom: 15px;
+    height: calc(100% - 15px);
+}
+
+.Axway-Product-Tile::before {
+    content: '';
+    display: block;
+    box-sizing: border-box;
+    padding-top: 56.25%;
+}
+
+.Axway-Product-Tile::after {
+    content: '';
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transition: background-color 0.6s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.Axway-Product-Tile:hover::after {
+    background-color: #43a7be;
+}
+
+.Axway-Product-Tile h4,
+.Axway-Product-Tile p {
+    color: #101820;
+    transition: color 0.6s;
+}
+
+.Axway-Product-Tile h4 {
+    width: 100%;
+}
+
+.Axway-Product-Tile p {
+    font-weight: normal;
+}
+
+.Axway-Product-Tile>a {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 15px;
+    text-decoration: none;
+    text-align: left;
+    color: #101820;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+.Axway-Product-Tile>a::before {
+    content: '';
+    background: transparent left top no-repeat;
+    background-image: url(https://www.axway.com/themes/custom/axway/img/griffin-aqua.svg);
+    background-size: contain;
+    display: block;
+    height: 100%;
+    right: -25%;
+    position: absolute;
+    top: 50%;
+    width: 240px;
+    opacity: 0.1;
+    transform: translate(0, -50%);
+}
+
+.Axway-Product-Tile>a:hover {
+    text-decoration: none;
+}
+
+.Axway-Product-Tile img {
+    display: block;
+    margin-bottom: 15px;
+    max-height: 6vw;
+}
+
+.Axway-Product-Tile:hover h4,
+.Axway-Product-Tile:hover p {
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .Axway-Product-Tile img {
+        max-height: 3vw;
+    }
+}
+
+@media (min-width: 1200px) {
+    .Axway-Product-Tiles {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: stretch;
+    }
+
+    .Axway-Product-Tile img {
+        max-height: 1.5vw;
+    }
+}
+
+.Axway-Product-Tiles.row::before,
+.Axway-Product-Tiles.row::after {
+    display: none;
+}

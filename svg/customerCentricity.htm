@@ -1,0 +1,532 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<style>
+.axwaygian {
+fill:red;
+}
+.customer {fill: #63585b;}
+button {
+	    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;}
+.goStyle {
+    background-color: #4CAF50;
+}  
+.boostStyle {
+    background-color: #AF8C50;
+}
+
+.transformStyle {
+    background-color: #AF5050;
+}
+
+.initStyle {
+    background-color: #8C50AF;
+}
+
+
+#drawLine{
+visibility:hidden ; fill:none; stroke: red;stroke-miterlimit: 10;stroke-width: 70px
+}
+
+button.inactive {
+cursor:default;
+opacity:0.3 !important;
+}
+
+h1 {
+font-family: roboto, sansserif;
+color: #A50034
+}
+
+#container svg {width:1100px}
+</style>
+	
+<script src="plugins/TweenLite.min.js"></script>
+<script src="plugins/TweenMax.min.js"></script>
+<script src="plugins/CSSPlugin.min.js"></script>
+<script src="plugins/TimelineMax.min.js"></script>
+<script src="plugins/TweenMax.min.js"></script>
+<script src="plugins/CustomEase.min.js"></script>
+<script src="plugins/DrawSVGPlugin.min.js"></script>
+<script src="plugins/GSDevTools.min.js"></script>
+<script src="plugins/CSSPlugin.min.js"></script>
+<script src="plugins/Draggable.min.js"></script>
+<script src="plugins/MorphSVGPlugin.min.js"></script>
+<script src="plugins/Point.js"></script>
+
+
+
+
+<script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+
+
+
+<title>Customer Centricity (Axway resolution)</title>
+</head>
+<body  text="#333333" link="#71b200" leftmargin="20" topmargin="20" marginwidth="20" marginheight="20" bgcolor="#eeeeee">
+
+<div style="text-align:center; width:100%">
+<h1>Customer Centricity</h1>
+<br>
+  <div id="container" style="width:100%; height:100%"></div>
+
+<script>
+$(function(){
+
+// load svg with ajax 
+  // copy/paste from http://plnkr.co/edit/LneUEK?p=preview 
+  const centerPoint = new Point(300,300);
+  var colors =["#FF0000","#FFFF00","#00FF00","#00FFFF","#0000FF","#FF00FF","#ED1C24","#FFF200","#00A651","#00AEEF","#2E3192","#EC008C","#FF0000"];
+  
+  var container = $("#container");
+  var svgUrl    = "CC21.svg";
+  var timeline  = new TimelineMax({ delay: 2, repeat: -1 });
+  var dropped=0;
+
+  var  tlMax = new TimelineMax() ;
+  $.get(svgUrl)
+    .then(injectSvg)
+    .always(doAnimation);
+  
+  function injectSvg(xmlDoc) {
+
+    var svg = $(xmlDoc).find("svg");
+    container.append(svg);
+	svg.attr("id","svg");
+  }
+  
+  function doAnimation() {
+
+  /*
+  COPY THIS TO A CODEPEN, could be useful sometime
+          function makeSVG(tag, attrs) {
+            var el= document.createElementNS('http://www.w3.org/2000/svg', tag);
+            for (var k in attrs)
+                el.setAttribute(k, attrs[k]);
+            return el;
+        }
+
+        var circle= makeSVG('circle', {cx: 100, cy: 50, r:40, stroke: 'black', 'stroke-width': 2, fill: 'red'});
+        document.getElementById('svg').appendChild(circle);
+        circle.onmousedown= function() {
+            alert('hello');
+        };
+		*/
+	//	$( "#orbit1" ).clone().appendTo( "#svg" ).attr("id","toto");
+	//	TweenLite.set("#toto", {transformOrigin:"center center" });
+		
+  TweenLite.set("#toto", {rotation:90 });
+    
+function orbit(object, orbit, cycleTime){
+	// check out the video in https://greensock.com/docs/Plugins/MorphSVGPlugin/static.pathDataToBezier
+	// object is the id of a group (including # character) containing a circle and a path
+	objId= "#"+object;
+	orbId="#"+orbit;
+	x= $(objId + " circle").attr("cx");
+	y= $(objId + " circle").attr("cy");
+	
+	TweenLite.set(objId + " circle", {fill:"#A50034" });
+	TweenLite.set(objId +" path", {fill:"white" });
+	TweenLite.set(orbId, {rotation:90 });
+	TweenLite.set(objId, {scale:0.8, xPercent:10, yPercent:10});
+	var bezierData = MorphSVGPlugin.pathDataToBezier(orbId, {offsetX: -x, offsetY: -y});
+	TweenMax.to(objId, cycleTime, {bezier: {values:bezierData, type:"cubic"}, ease:Linear.easeNone, repeat:-1});
+	}
+
+	for (i=1 ; i<=10; i++)  {
+	createDrag("#a" + i);
+	}
+	for (i=1 ; i<=6; i++)  {
+	createDrag("#c" + i);
+	}
+	
+	
+	function createDrag(dragObj) {
+
+var StartX, StartY;
+var startPoint;
+	Draggable.create(dragObj, {
+	
+    type:"x,y",
+    edgeResistance:0.65,
+    bounds:"#container",
+    lockAxis:false,
+    throwProps:true,
+    snap: {
+        x: function(endValue) {
+            return Math.round(endValue / gridWidth) * gridWidth;
+        },
+        y: function(endValue) {
+            return Math.round(endValue / gridHeight) * gridHeight;
+        }
+    },
+	onPress:function(){ 
+		startPoint=new Point(this.x, this.y);
+		// in fact startPoint is 0,0 (not at all the same as originalPositionX, originalPositionY
+		console.log ("startPoint.x=" + startPoint.x );
+				console.log ("startPoint.y=" + startPoint.y );
+	},
+	onDragEnd:function(e) {
+	
+	  	originalPositionX= Number($(dragObj + " circle").attr("cx"));
+		originalPositionY= Number($(dragObj + " circle").attr("cy"));
+	console.log ("originalPositionX=" + originalPositionX );
+		dragMotionX=Number(this.x);
+		dragMotionY=Number(this.y);
+		
+		var dropPoint = new Point(originalPositionX+dragMotionX, originalPositionY+dragMotionY);  
+		var distance = dropPoint.distance(centerPoint) ;
+		console.log("this.target.id=" + this.target.id );
+		firstChar=this.target.id.charAt(0);
+		obj = this.target.id;
+		if (firstChar==='a') 
+		{
+		console.log("Drop Axwaygian");
+		if (distance <290 && distance >= 215) 
+			{
+			orb= "orbit1";
+			orbit(obj, orb, 20);
+			handleDropped();
+			}
+		if (distance <215 && distance >= 155) 
+			{
+			orb= "orbit2";
+			orbit(obj, orb, 10);
+			handleDropped();
+			}
+		if (distance <155 && distance >= 70) 
+			{
+			orb= "orbit3";
+			orbit(obj, orb, 3);
+			handleDropped();
+			}
+		if (distance > 290 || distance < 70) {
+			console.log("missed!");
+			message ("missed!");
+			TweenLite.to( this.target , 1 , { x: startPoint.x , y: startPoint.y });
+			console.log("this.target.attr('id')=" + this.target);
+		
+			return;		
+			}
+		}
+		if (firstChar==='c') {
+			console.log("Drop Customer");
+			if ( distance <= 70) {
+			// leave customer in center
+				objId = "#" + this.target.id;
+				TweenLite.set(objId + " circle", {fill:"#7A99AC" });
+				TweenLite.set(objId +" path", {fill:"white" });
+				TweenLite.set(objId, { xPercent:10, yPercent:10});
+				TweenLite.set(objId, {scale:0.5});
+				handleDropped();
+			}
+			else {
+			console.log("missed customer!");
+			message ("missed!");
+			TweenLite.to( this.target , 1 , { x: startPoint.x , y: startPoint.y });
+			return;		
+			}
+		}
+		
+    }
+});
+
+	}
+	
+	function handleDropped() {
+	
+
+	dropped++;
+		message (16-dropped + " left to drop");
+	if (dropped == 16)
+	{finish()}
+	}
+	
+
+	function message(msg) {
+$("#message text").html(msg);
+}
+
+function finish(){
+	console.log("finish!!!");
+	TweenMax.killAll(false,true,false);
+	
+	x= $("#a7 circle").attr("cx");
+	y= $("#a7  circle").attr("cy");
+	console.log("x="+x +" y=" +y);
+for(i=1; i<11; i++)
+
+{
+	$("#a" +i + "  circle").attr("id","a" + i + "_circle");
+	
+	// TweenLite.to("#toto", 3, {  cx:0,cy:0}); // this blocks the app !!!
+	MorphSVGPlugin.convertToPath("#a" +i + "_circle") ;
+
+	
+	//	TweenLite.to("#a"+i, 3, {   y:0,x:0, svgOrigin:"0 0", transformOrign:'0 0'});
+
+	//	TweenLite.to("#a"+i +"_circle", 3, {   y:0,x:0, svgOrigin:"0 0", transformOrign:'0 0'});
+	//			TweenLite.to("#a" +i, 3, {   y:0,x:0, svgOrigin:"0 0", transformOrign:'0 0'});
+
+	// 
+//	var sc=1/0.8;
+//	sc=1;
+	TweenLite.to("#a" +i + "_circle", 3, {  fill:"#d9272e", morphSVG:"#griffin", clearProps:"transform"});
+	
+	 TweenLite.to("#a" +i , 1, {x:0, y:0, clearProps:"transform"}  );
+
+		}
+				console.log("finish2");
+
+			TweenLite.set("#griffin", {transformOrigin:"center center" });
+	 for (i=1; i<11; i++) {
+		obj="#a" + i + " circle";
+		$(obj).addClass("toGriffin");
+		$(obj).addClass("toConvert");
+
+		obj="#a" + i + " g";
+		$(obj).addClass("toFade");
+		obj="#imag"+i;
+		MorphSVGPlugin.convertToPath(obj) ;
+		
+		}
+	for (i=1; i<7; i++) {
+	/*
+		//obj="#c" + i + " path";
+		// $(obj).addClass("toFade");
+		obj="#c" + i + " g";
+		$(obj).addClass("toFade");
+		*/
+		obj="#c" + i + " circle";
+		
+		$(obj).addClass("toConvert");
+		$(obj).attr("id", "imagFrom" + i);
+		
+		$("#c" +i).addClass("toZero");
+		$("#c" +i +"_circle").addClass("toZero");
+		$("#imagFrom" ).addClass("toZero");
+		}
+	for (i=1; i<4; i++) {
+		obj="#drop" + i;
+		$(obj).addClass("toFade");
+		obj="#orb" + i + "_dash";
+		$(obj).addClass("toFade");
+		}		
+		$("#core").addClass("toFade");
+
+		for (i=1; i<7; i++) {
+		
+			fromSel="#c"+i +" circle";
+			 $(fromSel).addClass("toConvert");
+			console.log("fromSel=" + $("fromSel"))
+			toSel="#imag" + i;
+			toSel="#axway_" + i;
+			console.log("toSel=" + $(toSel));
+		//	TweenLite.to(fromSel, 3, {  x:0, y:0, fill:"#D22630", morphSVG:toSel });
+			
+		}
+		$("#dropCustText").addClass("toFade");
+		
+		$("#AxwegiansText").addClass("toFade");
+		$("#CustomersText").addClass("toFade");
+		$("#messageBack").addClass("toFade");
+		$("#rectangles").addClass("toFade");
+
+		
+		console.log ("11111111111111111111");
+
+
+
+		
+			console.log ("22222222222222222222");	
+		TweenLite.to(obj, 3, {fill:"#ff0000", opacity:1});
+
+		 MorphSVGPlugin.convertToPath(".toGriffin") ;
+		 MorphSVGPlugin.convertToPath(".toImagine") ;
+		 MorphSVGPlugin.convertToPath(".toConvert") ;
+		 
+
+		 
+		 MorphSVGPlugin.convertToPath(".toGriffin") ;
+		var griffin = document.getElementById("griffin");
+		 TweenLite.to(".toGriffin", 3, {  fill:"#D22630", morphSVG:griffin});
+		var imag1 = document.getElementById("imag1");
+
+		TweenLite.to(".toFade", 3, {  opacity:0});
+		console.log ("33333333333333333");
+		$("#c1_circle path").addClass("toImag1");
+		$("#c2_circle path").addClass("toImag2");
+		$("#c3_circle path").addClass("toImag3");
+		$("#c4_circle path").addClass("toImag3");
+		$("#c5_circle path").addClass("toImag4");
+		$("#c6_circle path").addClass("toImag5");
+
+				console.log ("444444444444444");
+				/*
+				try {
+		sourceX=document.getElementById('imagFrom1').getBBox().x;
+		sourceY=document.getElementById('imagFrom1').getBBox().y;
+		targetX=document.getElementById('axway_1').getBBox().x;
+		targetY=document.getElementById('#axway_1').getBBox().y;
+		}
+		catch(err)
+		{
+		console.error(err.message);
+		}
+		*/
+		
+		console.log ("555555555555555555555");
+		// console.log("sourceX="+sourceX+" sourceY="+sourceY+" targetX="+targetX+" targetY="+targetY);
+		tl=new TimelineMax({id: "timeline"});
+
+
+		 
+/*		
+		 TweenLite.to(".toZero", 0, { clearProps:"transform" });
+		 TweenLite.to(".toZero", 0, { clearProps:"scale" });		
+		*/
+		
+		tl.timeScale(1);
+		
+
+		
+		addStep (tl, "toZero", 0, 3);		
+		 tl.to(".toZero", duration, { x:0,y:0, scale:1 }, startTime);
+		
+	//	addStep (tl, "#imagFrom1 x=0", 0, 1);
+		// tl.add("aaaaaa", "+=0"); startTime="aaaaaa"; duration=1;
+		tl.to("#imagFrom1", duration, { x:0, y:0, ease:Power2. easeOut}, startTime);
+		tl.to("#imagFrom2", duration, {  x:0, y:0, ease:Power2. easeOut}, startTime);
+		tl.to("#imagFrom3", duration, { x:0, y:0, ease:Power2. easeOut}, startTime);
+		tl.to("#imagFrom4", duration, {  x:0, y:0, ease:Power2. easeOut}, startTime);
+		tl.to("#imagFrom5", duration, {  x:0, y:0, ease:Power2. easeOut}, startTime);
+		tl.to("#imagFrom6", duration, {  x:0, y:0, ease:Power2. easeOut}, startTime);
+	//					addStep (tl, "clearProps all", 0, 0);
+		//	 tl.call(message, ["#bbbb"]);	
+		tl.to("#imagFrom1", duration, { clearProps:"transform", clearProps:"scale" }, startTime);
+		tl.to("#imagFrom2", duration, {clearProps:"transform", clearProps:"scale"}, startTime);
+		tl.to("#imagFrom3", duration, {clearProps:"transform", clearProps:"scale"}, startTime);
+		tl.to("#imagFrom4", duration, { clearProps:"transform", clearProps:"scale"}, startTime);
+		tl.to("#imagFrom5", duration, {  clearProps:"transform", clearProps:"scale"}, startTime);
+		tl.to("#imagFrom6", duration, {  clearProps:"transform", clearProps:"scale"}, startTime);
+		
+	//	addStep (tl, "black", 0, 1);
+		// tl.add("morph3b", "+=1"); startTime="morph3b"; duration=1;
+		tl.to("#imagFrom1", duration, {   fill:"#111218" }, startTime);
+		tl.to("#imagFrom2", duration, {    fill:"#111218"}, startTime);
+		tl.to("#imagFrom3", duration, {  fill:"#111218"}, startTime);
+		tl.to("#imagFrom4", duration, {    fill:"#111218"}, startTime);
+		tl.to("#imagFrom5", duration, {    fill:"#111218"}, startTime);
+		tl.to("#imagFrom6", duration, {    fill:"#111218"}, startTime);
+		
+		
+
+		
+		
+		// tl.add("bbbbbb", "+=1"); startTime="bbbbbb"; duration=1;
+		addStep (tl, "morphSVG", 0, 1);		
+	//	tl.call(message, ["#dddd"]);
+		// tl.add("morph1", "+=2"); startTime="morph1"; duration=1;
+		tl.to("#imagFrom1", duration, {morphSVG:"#axway_1" }, startTime);
+		tl.to("#imagFrom2", duration, { morphSVG:"#axway_2"}, startTime);
+		tl.to("#imagFrom3", duration, { morphSVG:"#axway_3"}, startTime);
+		tl.to("#imagFrom4", duration, {  morphSVG:"#axway_4"}, startTime);
+		tl.to("#imagFrom5", duration, {  morphSVG:"#axway_5"}, startTime);
+		tl.to("#imagFrom6", duration, {   morphSVG:"#axway_3"}, startTime);
+		
+
+
+		
+
+
+
+		
+// GSDevTools.create();
+		// TweenLite.to(".toZero", 3, { x:0, y:0,  fill:"#111218"});
+
+		 		
+	 
+	} // end finish
+	
+	function addStep (tl, name, st, dur) {
+	tl.add(name, "+=" + st );
+	startTime=name;
+	duration=dur;
+	tl.call(message, [name]);
+	}
+	
+	function recenter(groupSelector, childSelector) {
+			console.log("childSelector="+ childSelector + " " + $(childSelector));
+	opa = $(groupSelector).attr("opacity");
+				console.log("groupSelector="+ groupSelector+ " " + $(groupSelector));
+
+	//TweenLite.to(groupSelector, {opacity:0});
+	xChild= Number($(childSelector).attr("cx"));
+	yChild= Number($(childSelector).attr("cy"));
+
+	$(groupSelector).children().each(function(i) {
+		tagName = $(this).prop("tagName");
+				console.log("tagName="+ tagName);
+		if (tagName == "circle")
+			{
+			console.log( "CIRCLE");
+			oldX = $(this).attr("cx");
+			newX = Number(oldX - xChild);
+			oldY = $(this).attr("cy");
+			newY = Number(oldY - yChild);
+			console.log("oldX="+ oldX + "; oldY="+ oldY + "; newX="+ newX + "; newY="+ newY );
+			// $(this).attr("cx", newX);
+			// $(this).attr("cy", newY);
+			TweenLite.to(this, {cx:newX, cy:newY});
+			}
+		else	
+			{
+			console.log( "not CIRCLE");
+			oldX = $(this).attr("x");
+			oldX = isNaN(oldX)? 0: oldX;
+			newX = Number(oldX - xChild);
+			oldY = $(this).attr("y");
+			oldY = isNaN(oldY)? 0: oldY;
+			newY = Number(oldY - yChild);
+			TweenLite.to(this, {x:newX, y:newY});
+			console.log("oldX="+ oldX + "; oldY="+ oldY + "; newX="+ newX + "; newY="+ newY );
+			}
+		
+	oldGroupX= Number($(groupSelector).attr("x"));
+	oldGroupX = isNaN(oldGroupX)? 0: oldGroupX;
+	oldGroupY= Number($(groupSelector).attr("y"));
+	oldGroupY = isNaN(oldGroupY)? 0: oldGroupY;
+	newGroupX= Number($(groupSelector).attr("x"))+xChild;
+	newGroupY= Number($(groupSelector).attr("y"))+yChild;
+	TweenLite.to(groupSelector, {x:newGroupX, y:newGroupY});
+	console.log("groupSelector="+ groupSelector + " " + $(groupSelector));
+//	$(groupSelector).attr("x", newGroupX);
+	//$(groupSelector).attr("y", newGroupY);
+
+	}); // end each
+//	TweenLite.to(groupSelector, {opacity:opa});
+
+	
+	} // end recenter
+	
+  } // end doanimation
+  
+  
+});
+</script>
+
+</body>
+</html>

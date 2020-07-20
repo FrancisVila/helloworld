@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<style>
+</style>
+<script src="plugins/TweenLite.min.js"></script>
+<script src="plugins/TweenMax.min.js"></script>
+<script src="plugins/CSSPlugin.min.js"></script>
+<script src="plugins/TimelineMax.min.js"></script>
+<script src="plugins/TweenMax.min.js"></script>
+<script src="plugins/CustomEase.min.js"></script>
+<script src="plugins/DrawSVGPlugin.min.js"></script>
+<script src="plugins/GSDevTools.min.js"></script>
+<script src="plugins/CSSPlugin.min.js"></script>
+<script src="plugins/Draggable.min.js"></script>
+<script src="plugins/MorphSVGPlugin.min.js"></script>
+<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+<script src="plugins/jquery.csv.min.js"></script>
+
+<title>Hello World template (or sample?)</title>
+</head>
+<body text="#333333" link="#71b200" leftmargin="20" topmargin="20" marginwidth="20" marginheight="20" bgcolor="#eeeeee">
+
+<div style="text-align:center; width:100%">
+<h1></h1>
+
+<div id="container" style="width:100%; height:100%"></div>
+<!--TODO adjust list of audio files-->
+<audio id="ph1" src="audio/test_ph1.mp3"></audio>
+<audio id="ph2" src="audio/test_ph2.mp3"></audio>
+<audio id="ph3" src="audio/test_ph3.mp3"></audio>
+
+<script>
+$(function(){
+
+// load svg with ajax
+
+var colors=["#FF0000", "#FFFF00", "#00FF00", "#00FFFF", "#0000FF", "#FF00FF", "#ED1C24", "#FFF200", "#00A651", "#00AEEF", "#2E3192", "#EC008C", "#FF0000"];
+
+var container=$("#container");
+// const svgUrl   ="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg";
+
+// TODO: adjust file URLs
+const svgFile="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg";const markers="audio/Markers.csv"
+
+var tlMax=new TimelineMax();
+var fileSVG=$.get(svgFile),
+fileAudioMarkers=$.get(markers),
+all=$.when(fileSVG, fileAudioMarkers)
+	.then(injectSvg)
+	.always(doAnimation)
+	.fail(handleFail);
+
+function handleFail(message) {
+	console.log("LOAD FAILED!!!!! ");
+	console.log(message);
+}
+
+		// inject SVG file into html
+		function injectSvg(xmlDoc) {
+			var svg=$(xmlDoc).find("svg");
+			container.append(svg);
+			svg.attr("id", "svg");
+			svg.attr("width", "300");
+		}
+
+		// create CSS classes for easy manipulation of complex graphics that can't be grouped graphically
+		function initClasses() {
+			// TODO add css classes to make animation targets a) for multiple items in svg b) for items where the id doesn't make it to the SVG output
+			$("* ").addClass("background");
+			$("#a").addClass("background");
+			$("#svg-text *").addClass("svg");
+			$("#svg-text").addClass("svg");
+		}
+
+		function retrieveCSVfromAudition(csvText) {
+			console.log(csvText.indexOf("\t"));
+			csvText2=csvText.replace(/\t/gi, ",");
+			console.log(csvText2);
+			var arr=$.csv.toArrays(csvText2);
+			return arr;
+		}
+
+		// converts 0:02.670 to 2.270
+		// will
+		function convertDuration(str) {
+			var arr=str.split(":");
+			console.log
+			if (arr.length == 2) {
+				val=Number((Number(arr[0]) * 60) + Number(arr[1]));
+				console.log("converted=" + val);
+				return val;
+			} else
+				return 3.333;
+		}
+
+		function playAudio(id) {
+			document.getElementById(id).play();
+		}
+
+		function doAnimation() {
+			initClasses();
+			allText=fileAudioMarkers.responseText;
+			arAudioMarkers=retrieveCSVfromAudition(allText);
+			console.log(arAudioMarkers);
+
+			var arTimeLines=[];
+			var tl1=test();
+			var tl2=getSecond();
+			var tl3=getThird();
+
+			var num=convertDuration(arAudioMarkers[2][2]) + 1
+				console.log("convertDuration+1=" + (convertDuration(arAudioMarkers[2][2]) + 1));
+			arTimeLines.push({
+				name: arAudioMarkers[1][0],
+				timeLine: tl1,
+				duration: convertDuration(arAudioMarkers[1][2])
+			});
+			arTimeLines.push({
+				name: arAudioMarkers[2][0],
+				timeLine: tl2,
+				duration: convertDuration(arAudioMarkers[2][2])
+			});
+			arTimeLines.push({
+				name: arAudioMarkers[3][0],
+				timeLine: tl3,
+				duration: convertDuration(arAudioMarkers[3][2])
+			});
+
+			console.log(arTimeLines[1].duration);
+			tl1.duration(arTimeLines[0].duration);
+			tl2.duration(arTimeLines[1].duration);
+			tl3.duration(arTimeLines[2].duration);
+
+			/*
+			tl1.duration(1);
+			tl2.duration(1);
+			tl3.duration(1);
+		*/
+			var master=new TimelineLite();
+			master.add(tl1);
+			master.add(tl2);
+			master.add(tl3);
+
+		} // end doanimation
+
+		function test() {
+			var tl=new TimelineLite({
+					id: arAudioMarkers[1][0]
+				});
+			tl.call(playAudio, ["ph1"]);
+			// TODO: add console.log statements with output like toto=toto (easy to check)
+			//  console.log('$(".background")=' );
+			//  console.log($(".background"));
+			//console.log('$(".svg")='+$(".svg") );
+			// output should be in the form:
+			// hw_background1=hw_background1
+
+			// TODO: add blink + text to test different areas behave as expected
+			// tl.to(".background", 2, { fill:"#000000", stroke:"#000000"});
+			// tl.to(".svg", 2, {opacity:1, fill:"#ffffff", stroke:"#ff0000"});
+			// tl.to(".background", 2, { clearProps:"all"}, "+=2");
+			tl.to(".svg", 2, {
+				opacity: 0.8
+			});
+			tl.to("#svg-text", 5, {
+				x: "-100"
+			});
+			tl.to(".svg", 1, {
+				clearProps: "all"
+			}, "+=2");
+			return tl;
+		}
+
+		function getSecond() {
+			var tl=new TimelineLite({
+					id: arAudioMarkers[2][0]
+				});
+			tl.call(playAudio, ["ph2"]);
+			tl.to("#svg-text", 2, {
+				scale: 2,
+				x: "50"
+			});
+			return tl;
+		}
+
+		function getThird() {
+			var tl=new TimelineLite({
+					id: arAudioMarkers[3][0]
+				});
+			tl.call(playAudio, ["ph3"]);
+			tl.to("#svg-text", 2, {
+				rotation: 90
+			});
+			return tl;
+		}
+		GSDevTools.create();
+
+	}); // end jQuery
+ </script>
+
+ </body>
+</html>

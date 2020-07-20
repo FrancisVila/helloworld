@@ -1,0 +1,55 @@
+.Axway-Round-Button {
+    border-radius: 24px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    min-height: 48px;
+    padding: 5px 35px;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #E82C2A;
+    border: 1px solid #E82C2A;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.06);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    float: left;
+}
+
+.Axway-Round-Button[data-style="sc"] {
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+.Axway-Round-Button:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.Axway-Round-Button i {
+    font-size: 6vw;
+    margin-right: 15px;
+    margin-left: -15px;
+}
+
+.Axway-Round-Button[data-size=lg] {
+    min-height: 48px;    
+}
+
+.Axway-Round-Button[data-size=sm] {
+    min-height: 32px;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .Axway-Round-Button i {
+        font-size: 3vw;
+    }
+}
+
+@media (min-width: 1200px) {
+    .Axway-Round-Button i {
+        font-size: 1.5vw;
+    }
+}

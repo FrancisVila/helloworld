@@ -1,0 +1,51 @@
+Portal notes
+    Problem Definition (Developer Portal)
+        https://techweb.axway.com/confluence/pages/viewpage.action?pageId=233413091 
+        single point of information 
+        too much going on
+        aesthetic and minimalistic
+        want to do something, not only read happy fluff
+        no story to link the offerings
+        make the whole experience more easy to consume
+        clutter on the Homepage
+        No breadcrumbs
+
+
+    Qualitative Data (User interviews)
+        https://techweb.axway.com/confluence/pages/viewpage.action?pageId=231092598 
+        Brenton House
+            Slack channel > Stack Overflow (!!!)
+            Develop vs Capabilities
+            Not sure what Central is
+            information what it does, not the marketing explanation 
+            build my first app or my first API 
+            everything you need to know to get started 
+        Emmelyn Wang
+            Where should I start? I want on opinionated starting point
+            reduce the cognitive load
+            microsites for each piece that's aggregated by something bigger
+        Sawn Rayan
+            Devportal and Platform  menus, language and arrangement should align
+            Blogs are in the Dev  portal, community and in the menu
+            Navigation is broken down to links which lead you to pages that underneath are also having navigation
+            I can't do API Management without central. Central is the platform
+        John Wiese
+            Tell the story in a graphical representation of where you can see how things connect
+            I see diff. platform offerings but no story to link them
+            Give me a synopsis of what Community portal is, what DevLink is,etc
+            a solution, not individual products
+        Mitko Pelov(BG)
+            I usually go to a Devportal with the idea to find something specific. I don't go to research and to know more about other products.
+            he is looking for search field most of the time and he would use this first
+            liked the Learn section 
+            some of the things like tutorials and code samples could be moved in the Devportal. The documentation for him is not the most convenience place to look at them
+
+Guide me through this 
+    House: build my first app or my first API
+    Wang: Where should I start? I want on opinionated starting point
+    ===> idea: a set of roadtrips
+
+Contradictions
+    Pelov: I don't go to research and to know more about other products
+    Wiese: a solution, not individual products
+    ===> idea: separate urls for different sections
