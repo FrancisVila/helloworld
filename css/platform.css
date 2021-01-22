@@ -128,7 +128,7 @@
 
 body {background-color: #f0f0f0}
 
-#gridTiles {margin-top: 70px}
+#gridTiles {margin-top: 0px}
 
 #gridTiles.half {margin-top: 0px}
 
@@ -777,6 +777,7 @@ width: 560px;
 position: absolute;
 top: 20px;
 left: -20px;
+z-index:-20;
 }
 
 
@@ -1193,4 +1194,14 @@ img.prc33.illustration {   width:25%;}
 
 }
 
-
+div.section {
+  margin-left: 20px;
+}
+div.section h1 {
+  margin: 0px;
+  font-size: 20px;
+  margin-bottom: 5px;
+  margin-top: 30px;
+  color: #069;
+  border-bottom: 2px solid;
+}
